@@ -34,26 +34,28 @@ function readyNow(){
 
 function appendImages(array) {
     for (let i = 0; i < array.length; i++) {
-        var appendString = '';
-
-        appendString += "<div data-index='" + i + "'><img src='https://github.com/" + array[i].githubUsername + ".png' alt='Profile image of " + array[i].name + "'></div>";
-        $('#imageDiv').append(appendString);
+        var appendString = "<div data-index='" + i + "'><img src='https://github.com/" + array[i].githubUsername + ".png' alt='Profile image of " + array[i].name + "'></div>";
+        $('.imageDiv').append(appendString);
+        $('.imageDiv').children().css('float', 'left');
     }
 }
 
 function guessWho() {
     if (questionNumber == $(this).parent().data('index')) {
         // $('#messageDiv').children().remove();
-        $('#messageDiv').append('<p>Success! Play again?</p>');
-        resetGame(people);
+        $('.messageDiv').append('<p>Success! Play again?</p>');
+        $(this).parent().css('background-color', 'green')
+        setTimeout(function() {resetGame(people)}, 2000);
+        // resetGame(people);
     } else {
-        $('#messageDiv').append('<p>Try again!</p>');
+        $('.messageDiv').append('<p>Try again!</p>');
     }
     //$('#guessText').html('<h2>' +);
 }
 
 function resetGame(array){
+    // $('div').removeAttr('style');
+    $('div').css('background-color', 'white');
     questionNumber = Math.floor(Math.random() * array.length);
     $('#guessText').html('Which GitHub user is: ' + array[questionNumber].name + '?');
-    
 }

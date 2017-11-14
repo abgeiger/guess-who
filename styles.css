@@ -4,6 +4,8 @@ img {
     margin: 10px;
 }
 
-div {
-    float: left;
+.messageDiv {
+    position: absolute;
+    top: 300px;
+    left: 20px;
 }
